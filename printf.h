@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 18:28:43 by abrun             #+#    #+#             */
-/*   Updated: 2020/12/04 18:32:29 by abrun            ###   ########.fr       */
+/*   Updated: 2021/03/03 14:53:13 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ void				print_d_2(int filler, int n);
 int					print_d_3(int n_chr, int puissance,
 		int n_point, int filler);
 
-void				print_d_4(int n_point, int puissance, int n, int filler);
+void				print_d_4(int n_point, int puissance,
+		long int n, int filler);
 
-int					print_d_5(int n_point, int puissance, int n, int filler);
+int					print_d_5(int n_point, int puissance,
+		long int n, int filler);
 
 void				print_d_6(char *num, int n, int n_point, long int nbr);
 
@@ -44,7 +46,7 @@ int					print_d_n_1(int n_point, int n);
 
 int					print_d_n_2(int puissance, int n_point);
 
-int					p_p(char *num, int n, int n_point);
+int					p_p(char *num, long long int n, int n_point);
 
 int					is_flag_point(char *num);
 
@@ -62,7 +64,7 @@ int					get_flag_point_s(char *num, int puissance);
 
 int					get_space_or_plus(char *num);
 
-int					get_filler(char *num);
+int					get_filler(char *num, int n_point);
 
 int					get_res(int puissance, int n_chr);
 
@@ -75,9 +77,9 @@ int					get_res_npt_pos(int n, int n_chr, int npt, int space_plus);
 
 int					get_res_npt_neg(int n, int n_chr, int npt, int space_plus);
 
-int					print_p_normal(long long int n, int n_chr);
+int					print_p_normal(long long int n, int n_chr, char *num);
 
-int					print_p_neg(long long int n, int n_chr);
+int					print_p_neg(long long int n, int n_chr, char *num);
 
 int					print_p(long long int n, char *num);
 
@@ -110,13 +112,11 @@ int					print_d_neg(int space_plus, int n, int n_chr, char *num);
 
 int					print_d(int n, char *num);
 
-int					print_c(int n, char *num);
+int					print_c(unsigned char n, char *num);
 
-int					print_c_normal(int n, int n_chr, char *num);
+int					print_c_normal(unsigned char n, int n_chr, char *num);
 
-int					print_c_neg(int n, int n_chr, char *num);
-
-void				print_c_6(char *num, int n, int n_point);
+int					print_c_neg(unsigned char n, int n_chr, char *num);
 
 int					print_c_3(int n_chr, int puissance, int filler);
 
@@ -157,6 +157,14 @@ int					browse_s(const char *s, int *n_chr);
 int					fill_num_last_step(int puissance, char *num,
 		int n, int counter);
 
-int					fill_num_star(char *num, int *c_num, int n);
+int					fill_num_star(char *num, int *c_num, int n, char next);
+
+int					is_valid(char c);
+
+int					browse_all(const char *s, int *c, char *n, va_list lst);
+
+int					error_malloc(int n_chr, va_list lst);
+
+void				restart_num(char *num);
 
 #endif

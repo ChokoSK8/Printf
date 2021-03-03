@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_printf_c_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/18 12:04:43 by abrun             #+#    #+#             */
-/*   Updated: 2020/11/18 12:04:45 by abrun            ###   ########.fr       */
+/*   Created: 2020/12/02 11:16:48 by abrun             #+#    #+#             */
+/*   Updated: 2021/01/14 17:50:29 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "printf.h"
 
-void	ft_putchar_fd(char c, int fd)
+int			print_c_3(int n_chr, int puissance, int filler)
 {
-	write(fd, &c, 1);
+	while (n_chr > puissance)
+	{
+		ft_putchar_fd(filler, 1);
+		n_chr--;
+	}
+	return (n_chr);
 }

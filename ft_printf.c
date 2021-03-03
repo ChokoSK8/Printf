@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 14:58:07 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/12 17:57:26 by abrun            ###   ########.fr       */
+/*   Updated: 2021/03/03 14:44:40 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int			print_va_arg(char c, va_list lst, char *num)
 	else if (c == 'd' || c == 'i')
 		return (print_d(va_arg(lst, int), num));
 	else if (c == 'c')
-		return (print_c(va_arg(lst, int), num));
+		return (print_c((unsigned char)va_arg(lst, int), num));
 	else if (c == 'u')
 		return (print_u(va_arg(lst, unsigned int), num));
 	else if (c == 'x')
@@ -65,17 +65,18 @@ int			fill_num_last_step(int puissance, char *num, int n, int counter)
 	return (counter);
 }
 
-int			fill_num_star(char *num, int *c_num, int n)
+int			fill_num_star(char *num, int *c_num, int n, char next)
 {
 	int		puissance;
 	int		counter;
 
+	if (ft_isdigit(next))
+		return (1);
 	counter = *c_num;
 	num[counter] = 0;
 	puissance = ft_putpui(n, 10);
-	n < 0 && is_flag_minus(num) ? n *= -1 : n;
+	n < 0 && is_flag_minus(num) && !is_flag_point(num) ? n *= -1 : n;
 	n < 0 ? puissance-- : puissance;
-	n < 0 && is_flag_point(num) ? n *= -1 : n;
 	if (n < 0)
 	{
 		num[counter++] = '-';
@@ -95,27 +96,26 @@ int			fill_num_star(char *num, int *c_num, int n)
 int			ft_printf(const char *s, ...)
 {
 	va_list		lst;
-	char		*num;
+	char		num[100];
 	int			c_num;
 	int			n_chr;
+	int			res;
 
 	n_chr = 0;
 	va_start(lst, s);
 	while (*s)
 	{
-		num = malloc(100);
 		c_num = 0;
 		s += browse_s(s, &n_chr);
 		if (*s && *s == '%')
 		{
-			s += pass_the_spaces(s, &c_num, num);
-			s += browse_2nd_step(s, num, &c_num);
-			num[0] && c_num == 0 ? c_num++ : c_num;
-			s += browse_3rd_step(s, num, c_num, lst);
-			n_chr += print_va_arg(*s, lst, num);
-			*s ? s++ : s;
-			free(num);
+			s += browse_all(s, &c_num, num, lst);
+			(res = print_va_arg(*s, lst, num)) > 0 ? n_chr += res : n_chr;
+			if (res < 0)
+				return (error_malloc(n_chr, lst));
+			is_valid(*s) ? s++ : s;
 		}
+		restart_num(num);
 	}
 	va_end(lst);
 	return (n_chr);

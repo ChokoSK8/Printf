@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 15:18:03 by abrun             #+#    #+#             */
-/*   Updated: 2020/12/04 10:57:43 by abrun            ###   ########.fr       */
+/*   Updated: 2021/03/03 14:47:30 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void				*ft_memmove(void *dst, const void *src, size_t len);
 
 void				*ft_memset(void *pointer, int value, size_t count);
 
-void				ft_putchar_fd(char c, int fd);
+void				ft_putchar_fd(unsigned char c, int fd);
 
 void				ft_putendl_fd(char *s, int fd);
 

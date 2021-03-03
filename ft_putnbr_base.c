@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 15:04:29 by abrun             #+#    #+#             */
-/*   Updated: 2020/12/04 13:46:35 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/27 16:46:43 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ long long int		ft_pow(long long int nb, int power)
 
 long int			ft_put_puissance(long long int nbr, size_t base_len)
 {
-	long long int	res;
+	float			res;
 	long int		puissance;
 
 	puissance = 0;
 	res = nbr;
-	while (res > (long long int)base_len)
+	while (res > (float)base_len)
 	{
 		puissance++;
 		res /= base_len;
